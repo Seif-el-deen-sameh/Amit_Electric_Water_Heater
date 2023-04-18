@@ -6,6 +6,7 @@
  */
 
 #include "main.h"
+#Define F_CPU 16000000u
 //interrupt functions initialization
 void Temperature_up(void);
 void Temperature_down(void);
