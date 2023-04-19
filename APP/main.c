@@ -6,7 +6,6 @@
  */
 
 #include "main.h"
-#define F_CPU 16000000u
 //interrupt functions initialization
 void Temperature_up(void);
 void Temperature_down(void);
@@ -74,6 +73,8 @@ void Temperature_up(void)
 {
 	//Clear 7 segment display
 	S_seg_clear(cathode);
+	//read stored Temperature in atmega32 internal EEPROM
+	Temperature=EEPROM_read(address);
 	//add Temperature if Temperature is smaller than 75oC
 	Temperature=Temperature<75?Temperature+5:Temperature;
 	//Write the set Temperature in atmega32 internal EEPROM
@@ -92,6 +93,8 @@ void Temperature_down(void)
 {
 	//Clear 7 segment display
 	S_seg_clear(cathode);
+	//read stored Temperature in atmega32 internal EEPROM
+	Temperature=EEPROM_read(address);
 	//remove Temperature if Temperature is larger than 35oC
 	Temperature=Temperature>35?Temperature-5:Temperature;
 	//Write the set Temperature in atmega32 internal EEPROM
